@@ -8,13 +8,16 @@ sudo cp -r /vagrant/cert/.ssh /root/
 sudo mv /etc/hosts /etc/hosts.bak
 sudo cp -r /vagrant/config/hosts  /etc/hosts
 ###配置更新源,安装必要软件
-# 获取公钥，显示ok即表示正确
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo cp /vagrant/config/sources.list /etc/apt/sources.list
 sudo apt-get update
-sudo apt-get install -y openjdk-8-jre-headless apt-transport-https ca-certificates curl software-properties-common
+sudo apt-get install -y openjdk-8-jdk-headless apt-transport-https ca-certificates curl software-properties-common
+# 获取公钥，显示ok即表示正确
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# 添加docker及k8s相关源
+sudo cp /vagrant/config/kubernetes.list /etc/apt/sources.list.d/kubernetes.list
+apt-get update
 # 调整系统 TimeZone
 sudo timedatectl set-timezone Asia/Shanghai
 # 将当前的 UTC 时间写入硬件时钟
@@ -77,7 +80,7 @@ sudo systemctl restart kubelet
 if [[ $1 = 1 ]] ; then
 	sudo sysctl net.bridge.bridge-nf-call-iptables=1
 	sudo sysctl net.bridge.bridge-nf-call-ip6tables=1
-	sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=172.27.129.11 --kubernetes-version=v1.10.4 --feature-gates=CoreDNS=true
+	sudo kubeadm init --config /vagrant/config/kubeadm-config.yml
 	sudo sed -i 's/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/g' /etc/ssh/ssh_config
 	sudo mkdir -p /root/.kube
 	sudo cp -r /etc/kubernetes/admin.conf /root/.kube/config
@@ -103,14 +106,3 @@ elif [[ $1 != 1 ]]; then
 	sudo cp /home/k8s/.kube/config /root/.kube/
 	sudo chmod 777 /root/.kube/config
 fi
-
-
-
-
-
-
-
-
-
-
-

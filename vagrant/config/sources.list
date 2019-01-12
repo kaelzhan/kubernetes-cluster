@@ -15,7 +15,4 @@ deb-src http://archive.canonical.com/ubuntu xenial partner
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
-deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu xenial stable
-# deb-src [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu xenial stable
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
-deb [arch=amd64] http://apt.kubernetes.io/ kubernetes-xenial main
