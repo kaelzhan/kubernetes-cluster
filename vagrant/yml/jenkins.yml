@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: jenkins-base
+  name: jenkins-base
+  namespace: kael-home
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jenkins-base
+    spec:
+      containers:
+      - name: jenkins-base
+        image: kaelzhan/jenkins:base
+        env:
+        - name: JAVA_OPTS
+          value: -Djenkins.install.runSetupWizard=false
+        ports:
+        - name: http-port
+          containerPort: 8080
+        - name: jnlp-port
+          containerPort: 50000
+        volumeMounts:
+        - name: jenkins-home
+          mountPath: /var/jenkins_home
+        resources:
+          requests:
+            memory: "16Gi"
+            cpu: "8"
+      volumes:
+      - name: jenkins-home
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-base
+  namespace: kael-home
+  labels:
+    kubernetes.io/cluster-service: 'true'
+    kubernetes.io/name: jenkins-base
+    k8s-app: jenkins-base
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    k8s-app: jenkins-base
