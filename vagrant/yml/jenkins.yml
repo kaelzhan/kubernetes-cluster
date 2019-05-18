@@ -7,6 +7,10 @@ metadata:
   namespace: kael-home
 spec:
   replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: jenkins-base
   template:
     metadata:
       labels:
