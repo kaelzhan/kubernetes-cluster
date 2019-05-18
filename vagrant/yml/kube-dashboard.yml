@@ -114,7 +114,7 @@ spec:
     spec:
       containers:
       - name: kubernetes-dashboard
-        image: kaelzhan/dashboard:v1.10.0
+        image: kaelzhan/google-containers.dashboard:latest
         ports:
         - containerPort: 8443
           protocol: TCP
