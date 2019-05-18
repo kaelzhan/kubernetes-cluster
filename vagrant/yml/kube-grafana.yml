@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: kaelzhan/grafana:v4.4.3
+        image: kaelzhan/google-containers.grafana:latest
         ports:
         - containerPort: 3000
           protocol: TCP

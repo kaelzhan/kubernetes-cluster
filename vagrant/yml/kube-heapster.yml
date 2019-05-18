@@ -20,7 +20,7 @@ spec:
       serviceAccountName: heapster
       containers:
       - name: heapster
-        image: kaelzhan/heapster:v1.5.3
+        image: kaelzhan/google-containers.heapster:latest
         imagePullPolicy: IfNotPresent
         command:
         - /heapster

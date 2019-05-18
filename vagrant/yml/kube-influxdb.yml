@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: influxdb
-        image: kaelzhan/influxdb:v1.3.3
+        image: kaelzhan/google-containers.influxdb:latest
         volumeMounts:
         - mountPath: /data
           name: influxdb-storage
