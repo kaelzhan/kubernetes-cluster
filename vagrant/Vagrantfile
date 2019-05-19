@@ -13,19 +13,20 @@ Vagrant.configure("2") do |config|
       vb.name = "kube-node1"
       vb.gui = false
       vb.memory = 8192
-      vb.cpus = 8
+      vb.cpus = 4
     end
   end
 
   config.vm.define "kube-node2" do |node|
+    node.vm.network "forwarded_port", guest: 32667, host: 8080 # jenkins-base
     node.vm.provision "config-normal", type: "shell", path: "config-normal.sh", args:"2"
     node.vm.network :private_network, ip: "172.27.129.12",  auto_config: true
     node.vm.hostname = "kube-node2"
     node.vm.provider :virtualbox do |vb, override|
       vb.name = "kube-node2"
       vb.gui = false
-      vb.memory = 8192
-      vb.cpus = 4
+      vb.memory = 24576
+      vb.cpus = 16
     end
   end
 

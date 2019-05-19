@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: jenkins-base
+        k8s-app: jenkins-base
     spec:
       containers:
       - name: jenkins-base
@@ -32,7 +32,7 @@ spec:
           mountPath: /var/jenkins_home
         resources:
           requests:
-            memory: "16Gi"
+            memory: "8Gi"
             cpu: "8"
       volumes:
       - name: jenkins-home
@@ -52,5 +52,6 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
+      nodePort: 32667
   selector:
     k8s-app: jenkins-base
