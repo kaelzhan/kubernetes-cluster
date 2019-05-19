@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: bio-computer
+  name: bio-computer
+  namespace: kael-home
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: bio-computer
+  template:
+    metadata:
+      labels:
+        app: bio-computer
+    spec:
+      containers:
+      - name: bio-computer
+        image: kaelzhan/bio-computer:latest
+        volumeMounts:
+        - mountPath: /opt/work
+          name: work
+        resources:
+          requests:
+            memory: "8Gi"
+            cpu: "8"
+      volumes:
+      - name: work
+        nfs:
+          server: 192.168.2.200
+          path: /local/work
