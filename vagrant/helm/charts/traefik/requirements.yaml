@@ -1,0 +1,4 @@
+dependencies:
+  - name: traefik
+    version: ~1.68.4
+    repository: https://kaelzhan.github.io/helm-charts

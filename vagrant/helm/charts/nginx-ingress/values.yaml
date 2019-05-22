@@ -1,0 +1,6 @@
+nginx-ingress:
+  controller:
+    service:
+      externalIPs: [192.168.99.100]
+  rbac:
+    create: true

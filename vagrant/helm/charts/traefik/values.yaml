@@ -1,0 +1,11 @@
+traefik:
+  rbac:
+    enabled: true
+  dashboard:
+    enabled: true
+    domain: k8s.localhost
+  serviceType: NodePort
+  service:
+    nodePorts:
+      http: 31001
+      https: 31002
