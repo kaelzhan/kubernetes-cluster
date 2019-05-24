@@ -1,6 +1,0 @@
-vagrant/helm/*/charts/
-.vagrant/
-*.log
-*.out
-*.tgz
-*.lock

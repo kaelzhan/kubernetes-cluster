@@ -1,5 +1,5 @@
 dependencies:
   - name: kubernetes-dashboard
     version: ~1.5.2
-    repository: https://kaelzhan.github.io/helm-charts
+    repository: https://raw.githubusercontent.com/kaelzhan/helm-charts/master
     alias: dashboard
