@@ -11,7 +11,7 @@ sudo cp -r /vagrant/config/hosts  /etc/hosts
 sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo cp /vagrant/config/sources.list /etc/apt/sources.list
 sudo apt-get update
-sudo apt-get install -y openjdk-8-jdk-headless apt-transport-https ca-certificates curl software-properties-common
+sudo apt-get install -y openjdk-8-jdk-headless apt-transport-https ca-certificates curl software-properties-common rpcbind nfs-common
 # 获取公钥，显示ok即表示正确
 curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

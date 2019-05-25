@@ -30,4 +30,4 @@ spec:
       - name: bio-computer-work
         nfs:
           server: 192.168.2.200
-          path: /local/work
+          path: /home/local/work

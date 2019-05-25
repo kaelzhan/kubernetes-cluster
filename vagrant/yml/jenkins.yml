@@ -35,7 +35,7 @@ spec:
       - name: jenkins-home
         nfs:
           server: 192.168.2.200
-          path: /local/jenkins
+          path: /home/local/jenkins
 ---
 apiVersion: v1
 kind: Service
