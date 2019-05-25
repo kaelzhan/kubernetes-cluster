@@ -50,9 +50,11 @@ spec:
   type: NodePort
   ports:
     - port: 8080
+      name: http-port
       targetPort: 8080
       nodePort: 32667
     - port: 50000
+      name: jnlp-port
       targetPort: 50000
       nodePort: 32668
   selector:
