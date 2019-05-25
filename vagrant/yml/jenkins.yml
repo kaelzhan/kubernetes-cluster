@@ -16,6 +16,7 @@ spec:
       labels:
         k8s-app: jenkins-base
     spec:
+      nodeName: kube-node3
       containers:
       - name: jenkins-base
         image: kaelzhan/jenkins:base
@@ -30,13 +31,11 @@ spec:
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
-        resources:
-          requests:
-            memory: "8Gi"
-            cpu: "8"
       volumes:
       - name: jenkins-home
-        emptyDir: {}
+        nfs:
+          server: 192.168.2.200
+          path: /local/jenkins
 ---
 apiVersion: v1
 kind: Service
@@ -53,5 +52,8 @@ spec:
     - port: 8080
       targetPort: 8080
       nodePort: 32667
+    - port: 50000
+      targetPort: 50000
+      nodePort: 32668
   selector:
     k8s-app: jenkins-base

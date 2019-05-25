@@ -21,13 +21,13 @@ spec:
         image: kaelzhan/bio-computer:latest
         volumeMounts:
         - mountPath: /opt/work
-          name: work
+          name: bio-computer-work
         resources:
           requests:
             memory: "8Gi"
             cpu: "8"
       volumes:
-      - name: work
+      - name: bio-computer-work
         nfs:
           server: 192.168.2.200
           path: /local/work

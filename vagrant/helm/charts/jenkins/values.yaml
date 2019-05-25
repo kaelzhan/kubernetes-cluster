@@ -1,0 +1,25 @@
+jenkins:
+  master:
+    # Used for label app.kubernetes.io/component
+    image: "kaelzhan/jenkins"
+    imageTag: "latest"
+    imagePullPolicy: "IfNotPresent"
+
+    serviceType: ClusterIP
+    ingress:
+      enabled: true
+      # For Kubernetes v1.14+, use 'networking.k8s.io/v1beta1'
+      # apiVersion: "extensions/v1beta1"
+      # labels: {}
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "false"
+        nginx.ingress.kubernetes.io/secure-backends: "false"
+      # Set this path to jenkinsUriPrefix above or use annotations to rewrite path
+      path: "/jenkins"
+      # configures the hostname e.g. jenkins.example.com
+      hostName: "k8s.localhost"
+      tls: no
+      # - secretName: jenkins.cluster.local
+      #   hosts:
+      #     - jenkins.cluster.local
